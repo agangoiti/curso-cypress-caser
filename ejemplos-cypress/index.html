@@ -29,7 +29,17 @@
 
   <div id="caja-retry-ability"></div>
 
+  <div>
 
+    <input type="text" id="nombre">
+    <button id="btn-clear">Borrar nombre</button>
+  </div>
+
+  <script>
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      document.getElementById('nombre').value = '';
+    })
+  </script>
 
   <script>
     const btn3500 = document.createElement('button');

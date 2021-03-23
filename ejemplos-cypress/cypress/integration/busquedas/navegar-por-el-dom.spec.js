@@ -1,5 +1,5 @@
 describe('Navegar por el DOM', () => {
-  it('buscar los hijos de la lista de cosas', () => {
+  xit('buscar los hijos de la lista de cosas', () => {
     cy.visit('http://localhost:8080');
 
     cy.get('#listaCosas')
@@ -29,7 +29,7 @@ describe('Navegar por el DOM', () => {
       })
   });
 
-  it('Ej tablas', () => {
+  xit('Ej tablas', () => {
     /**
      * 1: Buscar la tabla de Company, Contact y Country
      * 2: Comprobar que tiene el número de filas correctas (7)
@@ -38,5 +38,70 @@ describe('Navegar por el DOM', () => {
      * 5: Comprobar que después de la fila 5 hay 2 más
      */
 
+    cy.visit('https://www.w3schools.com/html/html_tables.asp');
+
+    cy.get('#customers')
+      .should('exist');
+
+    cy.get('#customers tr')
+      .should('have.length', 7);
+
+    cy.get('#customers tr')
+      .last()
+      // .find('td')
+      .children()
+      .should('have.length', 3);
+
+    cy.get('#customers td')
+      .each((td) => {
+        const textoCelda = td.text();
+        expect(textoCelda).not.be.empty;
+      })
+
+    let numFilas = 0
+    cy.get('#customers tr')
+      .each((tr, index) => {
+        if (index > 4) {
+          numFilas++;
+        }
+      })
+      .then((filas) => {
+        console.log(filas);
+        expect(numFilas).to.be.eq(2);
+      })
+
+  })
+
+  xit('Las tres primeras aserciones en una', () => {
+    cy.visit('https://www.w3schools.com/html/html_tables.asp');
+
+    cy.get('#customers')
+      .should('exist')
+      .find('tr')
+      .should('have.length', 7)
+      .last()
+      .children()
+      .should('have.length', 3)
+  })
+
+  xit('Las dos últimas aserciones en una', () => {
+    cy.visit('https://www.w3schools.com/html/html_tables.asp');
+
+    let numFilas = 0
+    cy.get('#customers tr')
+      .each((tr, index) => {
+        if (index > 4) {
+          numFilas++;
+        }
+      })
+      .then((filas) => {
+        console.log(filas);
+        expect(numFilas).to.be.eq(2);
+      })
+      .find('td')
+      .each((td) => {
+        const textoCelda = td.text();
+        expect(textoCelda).not.be.empty;
+      })
   })
 });
