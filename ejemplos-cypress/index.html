@@ -27,7 +27,27 @@
     </div>
   </div>
 
+  <div id="caja-retry-ability"></div>
 
+
+
+  <script>
+    const btn3500 = document.createElement('button');
+    btn3500.id = "btn-lazy-3500";
+    btn3500.innerText = 'Soy un botón perezoso';
+
+    setTimeout(() => {
+      document.getElementById('caja-retry-ability').appendChild(btn3500);
+    }, 3500);
+
+    const btn5500 = document.createElement('button');
+    btn5500.id = "btn-lazy-5500";
+    btn5500.innerText = 'Soy un botón más perezoso todavía';
+
+    setTimeout(() => {
+      document.getElementById('caja-retry-ability').appendChild(btn5500);
+    }, 5500);
+  </script>
 
 </body>
 
