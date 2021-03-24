@@ -6,10 +6,76 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <link rel="stylesheet" href="styles/codigo-secreto.css">
+
+  <style>
+    #caja-doble-click {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+
+    #caja-doble-click.db-clicked {
+      background-color: yellow;
+    }
+  </style>
+
 </head>
 
 <body>
 
+  <div id="panel-codigo-secreto">
+    <div id="pantalla-codigo"></div>
+    <div id="teclado">
+      <div class="fila-teclas">
+        <div class="tecla tecla-num" data-cy="p1" id="p1">1</div>
+        <div class="tecla tecla-num" data-cy="p2" id="p2">2</div>
+        <div class="tecla tecla-num" data-cy="p3" id="p3">3</div>
+      </div>
+      <div class="fila-teclas">
+        <div class="tecla tecla-num" data-cy="p4" id="p4">4</div>
+        <div class="tecla tecla-num" data-cy="p5" id="p5">5</div>
+        <div class="tecla tecla-num" data-cy="p6" id="p6">6</div>
+      </div>
+      <div class="fila-teclas">
+        <div class="tecla tecla-num" data-cy="p7" id="p7">7</div>
+        <div class="tecla tecla-num" data-cy="p8" id="p8">8</div>
+        <div class="tecla tecla-num" data-cy="p9" id="p9">9</div>
+      </div>
+      <div class="fila-teclas">
+        <div class="tecla tecla-clear" data-cy="pclear" id="pclear">CLD</div>
+        <div class="tecla tecla-num" data-cy="p0" id="p0">0</div>
+        <div class="tecla tecla-del" data-cy="pdel" id="pdel">DEL</div>
+      </div>
+    </div>
+  </div>
+
+  <input type="range" id="volumen" min="0" max="100" value="100">
+
+  <select id="select-coches-electricos">
+    <option value="polestar-2">Polestar 2</option>
+    <option value="nio-et7">Nio eT7</option>
+    <option value="tesla-model-3">Tesla Model 3</option>
+    <option value="xpeng-p7">Xpeng P7</option>
+  </select>
+
+  <select id="select-coches-electricos-multiple" multiple>
+    <option value="polestar-2">Polestar 2</option>
+    <option value="nio-et7">Nio eT7</option>
+    <option value="tesla-model-3">Tesla Model 3</option>
+    <option value="xpeng-p7">Xpeng P7</option>
+  </select>
+
+  <div id="caja-doble-click"></div>
+
+  <div id="hobbies" data-cy="hobbies">
+    <div><input type="checkbox" id="hobby1" name="hobby" value="cine">Cine</div>
+    <div><input type="checkbox" id="hobby2" name="hobby" value="musica">Música</div>
+    <div><input type="checkbox" id="hobby3" name="hobby" value="series" checked>Series</div>
+    <div><input type="checkbox" id="hobby4" name="hobby" value="tenis" checked>Tenis</div>
+    <div><input type="checkbox" id="hobby5" name="hobby" value="baloncesto">Baloncesto</div>
+  </div>
 
   <div id="busquedas">
     <h2 id="titulo">Listados</h2>
@@ -36,6 +102,12 @@
   </div>
 
   <script>
+    document.getElementById('caja-doble-click').addEventListener('dblclick', (event) => {
+      event.target.className = event.target.className.includes('db-clicked') ? '' : 'db-clicked';
+    })
+  </script>
+
+  <script>
     document.getElementById('btn-clear').addEventListener('click', () => {
       document.getElementById('nombre').value = '';
     })
@@ -58,6 +130,8 @@
       document.getElementById('caja-retry-ability').appendChild(btn5500);
     }, 5500);
   </script>
+
+  <script src="scripts/codigo-secreto.js"></script>
 
 </body>
 

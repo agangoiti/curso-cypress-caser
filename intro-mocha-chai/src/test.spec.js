@@ -19,6 +19,7 @@ describe('Aserciones con arrays y objetos', () => {
   it('el array debería tener 3 elementos y uno de ellos es loro', () => {
     const mascotas = ['perro', 'gato', 'loro'];
     expect(mascotas).have.lengthOf(3);
+    // mascotas.should.have.lengthOf(3);
     mascotas.should.include('loro');
   })
 
