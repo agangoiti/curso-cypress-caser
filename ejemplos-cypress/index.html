@@ -25,6 +25,39 @@
 
 <body>
 
+  <div id="js-popups">
+    <button type="button" id="btn-alert">Mostrar un Alert</button>
+    <button type="button" id="btn-confirm">Quitar el mensaje</button>
+    <p id="mensaje-confirm">Mensaje: <span id="confirm-nombre">The Marathon Continues</span></p>
+    <button type="button" id="btn-prompt">Mostrar tu nombre</button>
+    <p id="mensaje-prompt">Nombre: <span id="prompt-nombre"></span></p>
+  </div>
+
+  <div>
+    <div id="caja-edicion">
+      <label for="modoEdicion">Edición deshabilitada:</label>
+      <input type="checkbox" id="modoEdicion">
+    </div>
+    <div>
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre">
+    </div>
+  </div>
+
+  <div id="dashboard-screenshot">
+    <div>
+      <h3>Datos de Charly Falco</h3>
+      <p>Email: <span id="email">cfalco@gmail.com</span></p>
+      <p>DNI: <span id="dni">00000000T</span></p>
+      <p>Saldo invertido: <span id="saldo">300000€</span></p>
+    </div>
+    <ul id="inversiones">
+      <li>50% - Hooly, Inc</li>
+      <li>30% - Pied Piper, Inc</li>
+      <li>20% - Aviato, Inc</li>
+    </ul>
+  </div>
+
   <div id="panel-codigo-secreto">
     <div id="pantalla-codigo"></div>
     <div id="teclado">
@@ -97,7 +130,7 @@
 
   <div>
 
-    <input type="text" id="nombre">
+    <input type="text" id="nombre2">
     <button id="btn-clear">Borrar nombre</button>
   </div>
 
@@ -108,8 +141,29 @@
   </script>
 
   <script>
+    document.getElementById('btn-alert').addEventListener('click', () => {
+      alert('Hola mundo!!!');
+    })
+
+    document.getElementById('btn-confirm').addEventListener('click', () => {
+      const borrarMsg = confirm('¿Quieres borrar el mensaje?');
+      if (borrarMsg) {
+        document.getElementById('confirm-nombre').innerText = '';
+      }
+    })
+
+    document.getElementById('btn-prompt').addEventListener('click', () => {
+      const nombre = prompt('Introduce tu nombre:');
+      console.log({nombre})
+      if (nombre) {
+        document.getElementById('prompt-nombre').innerText = nombre;
+      }
+    })
+  </script>
+
+  <script>
     document.getElementById('btn-clear').addEventListener('click', () => {
-      document.getElementById('nombre').value = '';
+      document.getElementById('nombre2').value = '';
     })
   </script>
 
@@ -129,6 +183,20 @@
     setTimeout(() => {
       document.getElementById('caja-retry-ability').appendChild(btn5500);
     }, 5500);
+  </script>
+
+  <script>
+    const modoEdicionDesactivado = Math.floor(Math.random() * 3) === 0;
+    const checkEdicion = document.getElementById('modoEdicion');
+    const inputNombre = document.getElementById('nombre');
+    checkEdicion.checked = modoEdicionDesactivado;
+    inputNombre.disabled = modoEdicionDesactivado;
+
+    checkEdicion.addEventListener('click', () => {
+      const checked = checkEdicion.checked;
+      checkEdicion.checked = checked;
+      inputNombre.disabled = checked;
+    })
   </script>
 
   <script src="scripts/codigo-secreto.js"></script>

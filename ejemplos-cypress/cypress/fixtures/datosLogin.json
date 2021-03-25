@@ -1,0 +1,10 @@
+{
+  "usuarioOk": {
+    "email": "cfalco@gmail.com",
+    "password": "cfalco"
+  },
+  "usuarioKo": {
+    "email": "mike.koz@gmail.com",
+    "password": "koz1234"
+  }
+}

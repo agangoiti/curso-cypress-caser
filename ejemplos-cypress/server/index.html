@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Bienvenido a la página</h1>
+
+  <p>Tiempo para hoy: <span id="tiempo"></span></p>
+
+  <div>
+    <button type="button" id="btn-ubicacion">¿Dónde estoy?</button>
+    <p>Ubicación: <span id="ciudad"></span></p>
+  </div>
+
+  <script>
+    document.getElementById('btn-ubicacion').addEventListener('click', () => {
+      navigator.geolocation.getCurrentPosition(position => {
+        const { coords } = position;
+        const { longitude, latitude } = coords;
+
+        fetch(`http://localhost:8080/get-city?lat=${latitude}&lon=${longitude}`)
+          .then(resp => resp.json())
+          .then(({ciudad}) => {
+            document.getElementById('ciudad').innerText = ciudad;
+          })
+      })
+    })
+  </script>
+
+  <script>
+    function getEmoji() {
+      return fetch('http://localhost:8080/get-weather')
+        .then(resp => resp.json())
+        .then(({ weather }) => {
+          switch(weather) {
+            case 'soleado': return '☀️';
+            case 'parcialmente-nublado': return '🌤';
+            case 'nublado': return '☁️';
+            case 'lluvioso': return '🌧';
+            case 'tormenta': return '🌩';
+            case 'nevado': return '🌨';
+          }
+        });
+    }
+
+    getEmoji().then(val => {
+      document.getElementById('tiempo').innerText = val;
+    })
+  </script>
+
+</body>
+</html>

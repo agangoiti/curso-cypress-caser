@@ -5,9 +5,9 @@ describe('Interacciones con elementos', () => {
       .click();
   });
 
-  xit('si pulsas el botón de borrar, quita el valor del input', () => {
+  it('si pulsas el botón de borrar, quita el valor del input', () => {
     cy.visit('http://localhost:8080');
-    cy.get('#nombre')
+    cy.get('#nombre').as('inputNombre')
       .type('Charly')
       .invoke('val')
       // .then(val => {
@@ -18,7 +18,8 @@ describe('Interacciones con elementos', () => {
     cy.get('#btn-clear')
       .click();
 
-    cy.get('#nombre')
+    // cy.get('#nombre')
+    cy.get('@inputNombre')
       .invoke('val')
       .should('equal', '')
       .and('be.empty');
@@ -125,7 +126,7 @@ describe('Interacciones con elementos', () => {
 
   })
 
-  it('debería crear una cookie y encontrarla después', () => {
+  xit('debería crear una cookie y encontrarla después', () => {
     cy.visit('http://localhost:8080');
 
     cy.setCookie('mi-cookie', 'Esto es una cookie de prueba');
@@ -134,4 +135,12 @@ describe('Interacciones con elementos', () => {
       .should('have.property', 'value', 'Esto es una cookie de verdad')
   })
 
+  it('debería sacar un pantallazo solo del dashboard', () => {
+    cy.visit('http://localhost:8080');
+
+    cy.get('#dashboard-screenshot')
+      .screenshot('pantallazo1', {
+        blackout: ['#email', '#dni', '#saldo']
+      })
+  })
 });
