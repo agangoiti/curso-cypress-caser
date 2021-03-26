@@ -9,7 +9,7 @@ describe('Todo MVC', () => {
     cy.visit('https://todomvc.com/examples/vue/');
   })
 
-  xit('debería de añadir varias tareas correctamente', () => {
+  it('debería de añadir varias tareas correctamente', () => {
     cy.get('input.new-todo')
       .type('Tarea 1{enter}Tarea 2{enter}Tarea 3{enter}');
 

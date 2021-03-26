@@ -1,4 +1,6 @@
 {
   "defaultCommandTimeout": 4000,
-  "screenshotOnRunFailure": true
+  "screenshotOnRunFailure": true,
+  "experimentalStudio": true,
+  "projectId": "1jqe3g"
 }
